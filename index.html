@@ -2,9 +2,478 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
-    <title>MARKA-RP</title>
+    <title>MARKA-RP – Polski GTA V RolePlay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #050811;
+        --bg-alt: #0d101b;
+        --accent: #ff4b6a;
+        --accent-soft: rgba(255, 75, 106, 0.2);
+        --text: #f5f5f7;
+        --muted: #9da3b4;
+        --border: #1f2433;
+        --radius: 14px;
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(circle at top, #18213a 0, #050811 52%);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 40px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: radial-gradient(circle at 30% 0, #ffd36a, #ff4b6a);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14),
+          0 20px 40px rgba(0, 0, 0, 0.65);
+      }
+
+      .logo-text {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      nav {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 14px;
+      }
+
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 999px;
+        transition: color 0.15s ease, background-color 0.15s ease;
+      }
+
+      nav a:hover {
+        color: var(--text);
+        background-color: rgba(255, 255, 255, 0.06);
+      }
+
+      .pill {
+        border-radius: 999px;
+        padding: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 75, 106, 0.85),
+          rgba(118, 77, 255, 0.85)
+        );
+        display: inline-flex;
+      }
+
+      .pill-inner {
+        padding: 3px 10px;
+        background: rgba(5, 8, 17, 0.95);
+        border-radius: inherit;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.3fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      .hero-title {
+        font-size: clamp(32px, 4vw, 40px);
+        line-height: 1.1;
+        margin: 14px 0 10px;
+      }
+
+      .hero-title span {
+        color: var(--accent);
+      }
+
+      .hero-subtitle {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+        max-width: 460px;
+      }
+
+      .hero-ctas {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 11px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: transform 0.12s ease, box-shadow 0.12s ease,
+          background-color 0.12s ease, color 0.12s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff4b6a, #ff8a4b);
+        color: #050811;
+        box-shadow: 0 14px 40px rgba(255, 75, 106, 0.5);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 45px rgba(255, 75, 106, 0.7);
+      }
+
+      .btn-secondary {
+        background-color: rgba(12, 17, 34, 0.95);
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .btn-secondary:hover {
+        background-color: rgba(22, 28, 48, 0.95);
+      }
+
+      .online-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #3dd868;
+        box-shadow: 0 0 12px rgba(61, 216, 104, 0.9);
+      }
+
+      .hero-card {
+        background: radial-gradient(circle at top left, #2a3557, #050811);
+        border-radius: 22px;
+        padding: 18px 18px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .hero-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .hero-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        font-size: 12px;
+      }
+
+      .hero-stat {
+        background: rgba(5, 8, 17, 0.9);
+        border-radius: 12px;
+        padding: 10px 10px 9px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .hero-stat-label {
+        color: var(--muted);
+        font-size: 11px;
+        margin-bottom: 6px;
+      }
+
+      .hero-stat-value {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 4px;
+      }
+
+      .tag {
+        border-radius: 999px;
+        padding: 4px 9px;
+        background-color: rgba(7, 15, 40, 0.9);
+        color: var(--muted);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 11px;
+      }
+
+      .section {
+        margin-top: 10px;
+        background: radial-gradient(circle at top, #151a2d, #050811);
+        border-radius: 22px;
+        padding: 18px 18px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+        gap: 24px;
+      }
+
+      .section h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .section p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .feature-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        font-size: 13px;
+      }
+
+      .feature-item {
+        padding: 8px 9px;
+        background-color: rgba(6, 11, 26, 0.98);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .feature-item strong {
+        font-size: 13px;
+        display: block;
+      }
+
+      .feature-item span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      footer {
+        margin-top: 24px;
+        padding: 0 20px 16px;
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .section {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .feature-list {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .hero-card {
+          order: -1;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>MARKA-RP – strona w budowie</h1>
+    <div class="page">
+      <header>
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <div class="logo-text">MARKA-RP</div>
+        </div>
+        <nav>
+          <a href="#o-serwerze">O serwerze</a>
+          <a href="#features">Co oferujemy</a>
+          <a href="#kontakt">Status</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <div class="pill">
+              <div class="pill-inner">Polski GTA V RolePlay</div>
+            </div>
+            <h1 class="hero-title">
+              Nowy standard
+              <span>MARKA‑RP</span>
+              w Los Santos
+            </h1>
+            <p class="hero-subtitle">
+              Serwer RP budowany na spokojnie i z głową. Bez pay‑to‑win,
+              z jasnym regulaminem i systemem Premium/Gold opartym o nasze API –
+              tak, żebyś Ty i administracja spali spokojnie.
+            </p>
+            <div class="hero-ctas">
+              <a
+                class="btn btn-primary"
+                href="#"
+              >
+                Zacznij grę na MARKA‑RP
+              </a>
+              <a class="btn btn-secondary" href="#">
+                Przejdź na forum
+              </a>
+            </div>
+            <div class="online-badge">
+              <span class="dot"></span>
+              <span>Serwer w przygotowaniu – start wkrótce</span>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <div class="hero-card-header">
+              <span>Stan projektu</span>
+              <span style="font-size: 12px; color: #c5cbff">
+                Architektura &amp; WWW
+              </span>
+            </div>
+            <div class="hero-stat-grid">
+              <div class="hero-stat">
+                <div class="hero-stat-label">Telefon / prace</div>
+                <div class="hero-stat-value">W planie</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-label">Forum &amp; strona</div>
+                <div class="hero-stat-value">W trakcie</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-label">Premium/Gold API</div>
+                <div class="hero-stat-value">Zaplanowane</div>
+              </div>
+            </div>
+            <div class="hero-tags">
+              <span class="tag">QBCore</span>
+              <span class="tag">Telefon jako centrum gry</span>
+              <span class="tag">Brak multikonta bez zgody</span>
+              <span class="tag">Regulamin pod płatności</span>
+            </div>
+          </aside>
+        </section>
+
+        <section id="o-serwerze" class="section">
+          <div>
+            <h2>O serwerze</h2>
+            <p>
+              MARKA‑RP to polski serwer RolePlay w GTA V nastawiony na długą
+              grę, stabilną ekonomię i przejrzyste zasady. Zamiast miliona komend
+              stawiamy na telefon jako centrum rozgrywki: praca, biznesy, domy,
+              zlecenia i komunikacja w jednym miejscu.
+            </p>
+          </div>
+          <div>
+            <h2>Bezpieczna architektura</h2>
+            <p>
+              System Premium/Gold działa w oddzielnym serwisie uprawnień. Forum
+              dostaje tylko grupę, a serwer pyta nasze API o perki. Zmiana
+              silnika forum nie rozwali płatności ani kont graczy.
+            </p>
+          </div>
+        </section>
+
+        <section id="features" class="section" style="margin-top: 18px">
+          <div>
+            <h2>Co planujemy</h2>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <strong>Przemyślana ekonomia</strong>
+                <span>Biznesy, frakcje, organizacje przestępcze – bez
+                  pay‑to‑win.</span>
+              </li>
+              <li class="feature-item">
+                <strong>Forum jak na n4g.gg</strong>
+                <span>Pełna struktura działów: apele od kar, biznesy, frakcje,
+                  projekty postaci, off‑topic.</span>
+              </li>
+              <li class="feature-item">
+                <strong>Telefon zamiast komend</strong>
+                <span>Tankowanie, kurier, najem domów, zlecenia – wszystko z
+                  poziomu telefonu.</span>
+              </li>
+              <li class="feature-item">
+                <strong>Regulamin z głową</strong>
+                <span>Spójny z innymi serwerami RP, dopasowany do płatności i
+                  sporów z bankami.</span>
+              </li>
+            </ul>
+          </div>
+          <div id="kontakt">
+            <h2>Status projektu</h2>
+            <p>
+              Na razie rozwijamy projekt i testujemy rozwiązania na serwerze
+              developerskim. Gdy będziemy gotowi na testy społeczności,
+              opublikujemy szczegóły dot. rekrutacji, zasad i wymagań sprzętowych.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        MARKA‑RP &copy; 2026 &middot; Projekt w fazie planowania architektury
+        serwera i strony WWW – wszystkie treści robimy pod GTA V RP.
+      </footer>
+    </div>
   </body>
 </html>
